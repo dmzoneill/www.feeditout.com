@@ -2,7 +2,7 @@
 // phpcs:ignoreFile
 // jscpd:ignore-start
 
-/** @psalm-suppress UnresolvableInclude, PossiblyUndefinedArrayOffset */ include($_SERVER['DOCUMENT_ROOT']."/auth/connect.php");
+/** @psalm-suppress UnresolvableInclude, PossiblyUndefinedArrayOffset */ /** @psalm-suppress UnresolvableInclude, PossiblyUndefinedArrayOffset */ include($_SERVER['DOCUMENT_ROOT']."/auth/connect.php");
 ?>
 <html>
 <head>
@@ -101,18 +101,18 @@ font-size:26px;
 <?php
 
 $view = $_GET['view'];
-/** @psalm-suppress PossiblyInvalidArgument */ $letter = strtolower($_GET['letter']);
-/** @psalm-suppress PossiblyInvalidArgument */ $term = htmlspecialchars(strtolower($_GET['term']));
+/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ $letter = strtolower($_GET['letter']);
+/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ $term = htmlspecialchars(strtolower($_GET['term']));
 $file = $_GET['file'];
 $url = $_GET['url']; 
 
-/** @psalm-suppress MissingReturnType, MissingParamType */ function undo_htmlspecialchars($string)
+/** @psalm-suppress MissingReturnType, MissingParamType */ /** @psalm-suppress MissingReturnType, MissingParamType */ function undo_htmlspecialchars($string)
 {
 	$string = preg_replace("/&amp;/i",'&',$string);
-	/** @psalm-suppress PossiblyNullArgument */ $string = preg_replace("/&#039;/i","'",$string);
-	/** @psalm-suppress PossiblyNullArgument */ $string = preg_replace("/&quot;/i",'"',$string);
-	/** @psalm-suppress PossiblyNullArgument */ $string = preg_replace("/&lt;/i",'<',$string);
-	/** @psalm-suppress PossiblyNullArgument */ $string = preg_replace("/&gt;/i",'>',$string);
+	/** @psalm-suppress PossiblyNullArgument */ /** @psalm-suppress PossiblyNullArgument */ $string = preg_replace("/&#039;/i","'",$string);
+	/** @psalm-suppress PossiblyNullArgument */ /** @psalm-suppress PossiblyNullArgument */ $string = preg_replace("/&quot;/i",'"',$string);
+	/** @psalm-suppress PossiblyNullArgument */ /** @psalm-suppress PossiblyNullArgument */ $string = preg_replace("/&lt;/i",'<',$string);
+	/** @psalm-suppress PossiblyNullArgument */ /** @psalm-suppress PossiblyNullArgument */ $string = preg_replace("/&gt;/i",'>',$string);
 
 	return $string;
 
@@ -122,11 +122,11 @@ $url = $_GET['url'];
 switch($view){
 
 default:
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ print $menu;
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ print $menu;
 print "<fieldset>";
 print "<legend>Texts / Documents listings </legend><hr> ";
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $docs = $stream->do_query("select id,named,sized,viewsd from documents order by named asc","array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $docs = $stream->do_query("select id,named,sized,viewsd from documents order by named asc","array");
 
 for($i=0;$i<count($docs);$i++){
 
@@ -136,7 +136,7 @@ for($i=0;$i<count($docs);$i++){
 	/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $size = $tmp[2];
 	/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $views = $tmp[3];
 	$first = strtolower(substr($name,0,1));
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if("$first"!=="$pass"){
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if("$first"!=="$pass"){
 		print "<a href=\"javascript:loadurl('index.php?view=letter&letter=" .strtoupper($first) ."')\">" . strtoupper($first) . "</a> | ";
 	}
 	$pass = strtolower(substr($name,0,1));
@@ -150,7 +150,7 @@ break;
 
 case "letter":
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $docs = $stream->do_query("select id,named,sized,viewsd from documents order by named asc","array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $docs = $stream->do_query("select id,named,sized,viewsd from documents order by named asc","array");
 
 print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr><td><h3>Listing for $letter </h3><hr></td></tr></table>\n";
 print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>
@@ -173,7 +173,7 @@ for($i=0;$i<count($docs);$i++){
 		continue;
 	}
 
-/** @psalm-suppress PossiblyUndefinedArrayOffset */ $mkurl = rawurlencode("http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."?".$_SERVER['QUERY_STRING']);
+/** @psalm-suppress PossiblyUndefinedArrayOffset */ /** @psalm-suppress PossiblyUndefinedArrayOffset */ $mkurl = rawurlencode("http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."?".$_SERVER['QUERY_STRING']);
 $kb = round($size /1024);
 print "<tr>
 <td align=left width=400><b> 
@@ -190,7 +190,7 @@ break;
 
 case "search":
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $docs = $stream->do_query("SELECT id,named,sized,viewsd FROM `documents` WHERE `contentd` LIKE '%$term%'","array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $docs = $stream->do_query("SELECT id,named,sized,viewsd FROM `documents` WHERE `contentd` LIKE '%$term%'","array");
 
 print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><h3>Search results for $term </h3><hr></td></tr></table>\n";
 print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>
@@ -207,7 +207,7 @@ for($i=0;$i<count($docs);$i++){
 	$size = $tmp[2];
 	$views = $tmp[3];
 
-/** @psalm-suppress PossiblyUndefinedArrayOffset */ $mkurl = rawurlencode("http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."?".$_SERVER['QUERY_STRING']);
+/** @psalm-suppress PossiblyUndefinedArrayOffset */ /** @psalm-suppress PossiblyUndefinedArrayOffset */ $mkurl = rawurlencode("http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."?".$_SERVER['QUERY_STRING']);
 
 $kb = round($size /1024);
 
@@ -226,14 +226,14 @@ break;
 
 case "viewfile";
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyInvalidCast */ $docs = $stream->do_query("SELECT named,contentd FROM `documents` WHERE `id` = '$file'","array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyInvalidCast */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyInvalidCast */ $docs = $stream->do_query("SELECT named,contentd FROM `documents` WHERE `id` = '$file'","array");
 
-/** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['letter']){
-	/** @psalm-suppress PossiblyInvalidOperand */ $url = $url . "&letter=" .$_GET['letter'];
+/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['letter']){
+	/** @psalm-suppress PossiblyInvalidOperand */ /** @psalm-suppress PossiblyInvalidOperand */ $url = $url . "&letter=" .$_GET['letter'];
 }
 
-/** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['term']){
-	/** @psalm-suppress PossiblyInvalidOperand */ $url = $url . "&term=" .$_GET['term'];
+/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['term']){
+	/** @psalm-suppress PossiblyInvalidOperand */ /** @psalm-suppress PossiblyInvalidOperand */ $url = $url . "&term=" .$_GET['term'];
 }
 
 $term = $_GET['term'];
@@ -242,8 +242,8 @@ for($i=0;$i<count($docs);$i++){
 
 	$tmp = $docs[$i];
 	$name = $tmp[0];
-	/** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['term']){
-		/** @psalm-suppress PossiblyInvalidCast */ $content = preg_replace("/$term/i","<font style='background-color:#cc3333'>$term</font>",rawurldecode($tmp[1]));
+	/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['term']){
+		/** @psalm-suppress PossiblyInvalidCast */ /** @psalm-suppress PossiblyInvalidCast */ $content = preg_replace("/$term/i","<font style='background-color:#cc3333'>$term</font>",rawurldecode($tmp[1]));
 	}
 	else {
 		$content = rawurldecode($tmp[1]);
@@ -252,13 +252,13 @@ for($i=0;$i<count($docs);$i++){
 	
 print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><h3>Viewing file $name</h3><hr></td></tr></table>\n";	
 	
-/** @psalm-suppress PossiblyInvalidCast */ print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>
+/** @psalm-suppress PossiblyInvalidCast */ /** @psalm-suppress PossiblyInvalidCast */ print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>
 <td align=left width=650><a href=\"javascript:loadurl('$url')\"> << Back</a></td></tr></table><br><br>";	
 	
-/** @psalm-suppress PossiblyNullArgument */ print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>
+/** @psalm-suppress PossiblyNullArgument */ /** @psalm-suppress PossiblyNullArgument */ print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>
 <td align=left width=650>".nl2br($content)."</td></tr></table><br><br>";
 
-/** @psalm-suppress PossiblyInvalidCast */ print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>
+/** @psalm-suppress PossiblyInvalidCast */ /** @psalm-suppress PossiblyInvalidCast */ print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>
 <td align=left width=650><a href=\"javascript:loadurl('$url')\"> << Back</a></td></tr></table>";	
 			
 }

@@ -2,58 +2,58 @@
 // phpcs:ignoreFile
 // jscpd:ignore-start
 
-/** @psalm-suppress UnresolvableInclude, PossiblyUndefinedArrayOffset */ include($_SERVER['DOCUMENT_ROOT']."/auth/connect.php");
+/** @psalm-suppress UnresolvableInclude, PossiblyUndefinedArrayOffset */ /** @psalm-suppress UnresolvableInclude, PossiblyUndefinedArrayOffset */ include($_SERVER['DOCUMENT_ROOT']."/auth/connect.php");
 
-/** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['download']){
-/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $file = md5($_GET['download']);
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $do = $stream->do_query("select * from downloads where md='$file'","array");
+/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['download']){
+/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $file = md5($_GET['download']);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $do = $stream->do_query("select * from downloads where md='$file'","array");
 
 	if(count($do)>1){
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $upd = @$stream->do_query("select dw from downloads where md='$file'","one");
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $upd = @$stream->do_query("select dw from downloads where md='$file'","one");
 		$dws = $upd + 1;
-		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $upd = @$stream->do_query("update downloads set dw='$dws' where md='$file'","one");
-		/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $file = rawurldecode($_GET['download']);
-		/** @psalm-suppress RiskyTruthyFalsyComparison */ if(stristr($file,"..")){
+		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $upd = @$stream->do_query("update downloads set dw='$dws' where md='$file'","one");
+		/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $file = rawurldecode($_GET['download']);
+		/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(stristr($file,"..")){
 			die("hacking attempt detected");
 		}
 		header("Location: http://www.feeditout.com/books/" .$file);
 	}
 
 	else {
-		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $insert = @$stream->do_query("insert into downloads values('','$file','1')","one");
-		/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $file = rawurldecode($_GET['download']);
-		/** @psalm-suppress RiskyTruthyFalsyComparison */ if(stristr($file,"..")){
+		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $insert = @$stream->do_query("insert into downloads values('','$file','1')","one");
+		/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $file = rawurldecode($_GET['download']);
+		/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(stristr($file,"..")){
 			die("hacking attempt detected");
 		}
 		header("Location: http://www.feeditout.com/books/" . $file);
 	}
 }
 
-/** @psalm-suppress RiskyTruthyFalsyComparison */ if(($_GET['email']) && ($_GET['file'])){
+/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(($_GET['email']) && ($_GET['file'])){
 
 include("mail_attachment.php");
 
 
 
-/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $file = md5($_GET['file']);
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $do = $stream->do_query("select * from downloads where md='$file'","array");
+/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $file = md5($_GET['file']);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $do = $stream->do_query("select * from downloads where md='$file'","array");
 
 	if(count($do)>1){
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $upd = @$stream->do_query("select dw from downloads where md='$file'","one");
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $upd = @$stream->do_query("select dw from downloads where md='$file'","one");
 		$dws = $upd + 1;
-		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $upd = @$stream->do_query("update downloads set dw='$dws' where md='$file'","one");
+		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $upd = @$stream->do_query("update downloads set dw='$dws' where md='$file'","one");
 	}
 
 	else {
-		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $insert = @$stream->do_query("insert into downloads values('','$file','1')","one");
+		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $insert = @$stream->do_query("insert into downloads values('','$file','1')","one");
 	}
 
 $file = $_GET['file'];	
-/** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ if(stristr($file,"..")){
+/** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ if(stristr($file,"..")){
 		die("hacking attempt detected");
 		}
 
-/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidCast */ mail_attachment("billgates@microsoft.com", $_GET['email'],"Your Requested book", "Please see the attached file you requested",
+/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidCast */ /** @psalm-suppress PossiblyInvalidCast */ mail_attachment("billgates@microsoft.com", $_GET['email'],"Your Requested book", "Please see the attached file you requested",
 "/home/.ornice/proxykillah/feeditout.com/books/$file");
 
 print "<script language=javascript>\n";
@@ -63,7 +63,7 @@ print "</script>\n";
 }
 
 
-/** @psalm-suppress RedundantCondition */ if($_FILES['uploadedfile']){
+/** @psalm-suppress RedundantCondition */ /** @psalm-suppress RedundantCondition */ if($_FILES['uploadedfile']){
 // Where the file is going to be placed 
 $name = basename($_FILES['uploadedfile']['name']);
 $ext = substr($name,strlen($name) -3, strlen($name));
@@ -225,7 +225,7 @@ collapseAll($('Practice-Exams','Previous-Exams','Addison-Wesley','Microsoft-book
 <body onLoad="pageLoad()">
 <?php 
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ print $menu;
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ print $menu;
 print "<fieldset><legend>Books</legend><hr><br><br>";
 $totalsize = 0;
 $totalbooks = 0;
@@ -240,7 +240,7 @@ for($i=0;$i<count($dirss);$i++){
 		print "<h3>MISC Reading Materials</h3>";
 	}
 
-	/** @psalm-suppress InvalidArrayOffset */ print "<div id=\"wrapper\"><blockquote><a onclick=\"switchMenu('$dirss[$i]');\" title=\"Switch the Menu\" href='#'>>> <b>$dirss[$i]</b> </a><div id=\"$dirss[$i]\"  style=\"padding-left:30\">";
+	/** @psalm-suppress InvalidArrayOffset */ /** @psalm-suppress InvalidArrayOffset */ print "<div id=\"wrapper\"><blockquote><a onclick=\"switchMenu('$dirss[$i]');\" title=\"Switch the Menu\" href='#'>>> <b>$dirss[$i]</b> </a><div id=\"$dirss[$i]\"  style=\"padding-left:30\">";
 	
 	$mk = "/home/.ornice/proxykillah/feeditout.com/books/$dirss[$i]";
 	if ($handle = opendir($mk)) {
@@ -253,24 +253,24 @@ for($i=0;$i<count($dirss);$i++){
 				continue;
 			}
 			if(!is_dir($file)){
-				/** @psalm-suppress PossiblyFalseOperand */ $size = round(filesize("$mk/$file") / 1024);
-				/** @psalm-suppress InvalidOperand */ $r = $r+$size;
-				/** @psalm-suppress InvalidOperand */ $eta = round($size / 50); 
+				/** @psalm-suppress PossiblyFalseOperand */ /** @psalm-suppress PossiblyFalseOperand */ $size = round(filesize("$mk/$file") / 1024);
+				/** @psalm-suppress InvalidOperand */ /** @psalm-suppress InvalidOperand */ $r = $r+$size;
+				/** @psalm-suppress InvalidOperand */ /** @psalm-suppress InvalidOperand */ $eta = round($size / 50); 
 				$sz = "kb";
 				if($size>1024){
-					/** @psalm-suppress InvalidOperand */ $size = round($size / 1024);
+					/** @psalm-suppress InvalidOperand */ /** @psalm-suppress InvalidOperand */ $size = round($size / 1024);
 					$sz = "mb";
 				}
 				/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $tm = "secs";
 				if($eta>60){
-					/** @psalm-suppress UnusedVariable, InvalidOperand */ /** @psalm-suppress UnusedVariable */ $eta = round($eta / 60);
+					/** @psalm-suppress UnusedVariable, InvalidOperand */ /** @psalm-suppress UnusedVariable, InvalidOperand */ $eta = round($eta / 60);
 					/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $tm = "mins";
 				}
 				if(($p>0) && ($p%10<1)){
 					print "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
 				}
 				$dsd = md5("$dirss[$i]/$file");
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $downs = @$stream->do_query("select dw from downloads where md='$dsd'","one");
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $downs = @$stream->do_query("select dw from downloads where md='$dsd'","one");
 				if($downs==""){
 					$downs=0;
 				}
@@ -289,8 +289,8 @@ for($i=0;$i<count($dirss);$i++){
 			}	
     	}
 		$totalbooks = $totalbooks + $p;
-		/** @psalm-suppress InvalidOperand */ $totalsize = $totalsize + $r;
-		/** @psalm-suppress InvalidOperand */ print "<tr><td colspan=4>&nbsp;</td><tr></tr><tr><td colspan=4>" .$r/1024 ." megabytes in $p files</td></tr>";
+		/** @psalm-suppress InvalidOperand */ /** @psalm-suppress InvalidOperand */ $totalsize = $totalsize + $r;
+		/** @psalm-suppress InvalidOperand */ /** @psalm-suppress InvalidOperand */ print "<tr><td colspan=4>&nbsp;</td><tr></tr><tr><td colspan=4>" .$r/1024 ." megabytes in $p files</td></tr>";
 		print "</table>";
     	closedir($handle);
 	}
@@ -339,7 +339,7 @@ print "</div></blockquote></div>";
 ob_end_flush();
 
 
-/** @psalm-suppress InvalidOperand */ print "Total of " .round((($totalsize/1024)/1024),2) ." gigs in $totalbooks books";
+/** @psalm-suppress InvalidOperand */ /** @psalm-suppress InvalidOperand */ print "Total of " .round((($totalsize/1024)/1024),2) ." gigs in $totalbooks books";
 ?>
 
 
