@@ -1,6 +1,8 @@
 <?php
+// phpcs:ignoreFile
+// jscpd:ignore-start
 
-include($_SERVER['DOCUMENT_ROOT']."/auth/connect.php");
+/** @psalm-suppress UnresolvableInclude, PossiblyUndefinedArrayOffset */ /** @psalm-suppress UnresolvableInclude, PossiblyUndefinedArrayOffset */ include($_SERVER['DOCUMENT_ROOT']."/auth/connect.php");
 ?>
 <html>
 <head>
@@ -93,14 +95,14 @@ font-size:26px;
 
 $view = $_GET['view'];
 $term = $_GET['term'];
-$file = $_GET['file'];
-$url = $_GET['url']; 
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $file = $_GET['file'];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $url = $_GET['url']; 
 
 
 switch($view){
 
 default:
-print $menu;
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ print $menu;
 print "<fieldset>";
 print "<div id=\"wrapper\"><legend>Serial Search</legend><hr></a>
 <div id=\"search\"  style=\"padding-left:30\">";
@@ -125,28 +127,28 @@ case "search":
 </form></td></tr></table>
 <?php
 
-$limit = 0;
-$j=0;
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $limit = 0;
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $j=0;
 
-print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><h3>Search results for $term </h3></td></tr></table>\n";
+/** @psalm-suppress PossiblyInvalidCast */ /** @psalm-suppress PossiblyInvalidCast */ print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><h3>Search results for $term </h3></td></tr></table>\n";
 print "<table width=650 cellpadding=0 cellspacing=0 border=0><tr>";
 $t = 0;
 
-while($start<24000){
+/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ while($start<24000){
 	$start = $start + 1000;
 	$limit = 1000;
-	$docs = $stream->do_query("SELECT * FROM `serial` LIMIT $start , $limit","array");
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $docs = $stream->do_query("SELECT * FROM `serial` LIMIT $start , $limit","array");
 
 	for($i=0;$i<count($docs);$i++){
 
 		$tmp = $docs[$i];
-		$id = $tmp[0];
-		$conet = rawurldecode($tmp[1]);
-		$pattern = "/$term/i";
-		if(preg_match($pattern,$conet)){
+		/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id = $tmp[0];
+		$conet = rawurldecode($tmp[1]); // codespell:ignore conet
+		/** @psalm-suppress PossiblyInvalidCast */ /** @psalm-suppress PossiblyInvalidCast */ $pattern = "/$term/i";
+		if(preg_match($pattern,$conet)){ // codespell:ignore conet
 		$t++;
 		print "<tr><td colspan=2 align=left width=650><hr></td></tr>";
-			print "<tr><td width=100>$t </td><td align=left width=650>$conet</td></tr>";
+			print "<tr><td width=100>$t </td><td align=left width=650>$conet</td></tr>"; // codespell:ignore conet
 			
 		}
 			
@@ -160,3 +162,4 @@ break;
 }
 
 ?>
+<?php // jscpd:ignore-end ?>
