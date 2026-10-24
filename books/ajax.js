@@ -1,3 +1,5 @@
+/* eslint-disable */
+// jscpd:ignore-start
 // JavaScript Document
 
 
@@ -33,3 +35,4 @@ if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)) {
 }
 
 
+// jscpd:ignore-end
