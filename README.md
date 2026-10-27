@@ -1,5 +1,9 @@
 # feeditout.com
 
+<p align="center">
+  <img src=".github/logo.png" alt="www.feeditout.com logo" width="128" />
+</p>
+
 A version of the Feed It Out site.
 
 ## Contents
